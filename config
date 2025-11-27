@@ -34,6 +34,9 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
 
+# ejecutar compton
+exec --no-startup-id compton
+
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
@@ -204,19 +207,24 @@ bindsym $mod+$launcher_key mode "launcher"
 ############# PARTE VISUAL
 font pango:IBM 3270 12
 
+set $bg_root "/home/shovelflow/Pictures/backgrounds"
 
+exec --no-startup-id feh --bg-fill --recursive --randomize $bg_root/*
+# compton ejecutado mas arriba
+bindsym $mod+Mod1+r exec --no-startup-id feh --bg-fill --recursive --randomize $bg_root/*
+bindsym $mod+Mod1+5 exec --no-startup-id feh --bg-fill $bg_root/Slime_Rancher.jpg
 
 # Start i3bar to display a workspace bar (plus the system information i3status finds out, if available)
 bar {
-        status_command i3status --transparency
+        i3bar_command i3bar --transparency
+	status_command i3status --config ~/.config/i3/i3status/config
 	# poner la barra arriba
 	position top
-	# font IBM 3270:
 	
+	# personalizacion
 	font pango:IBM 3270 14
-
 	colors {
-		background #00000022
+		background #00ff0000
 	}
 }
 

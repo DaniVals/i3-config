@@ -1,0 +1,11 @@
+general {
+	colors = true
+	interval = 1
+}
+
+order += "tztime local"
+
+tztime local {
+	format = "%H:%M %d-%m-%y"
+	hide_if_equals_localtime = false
+}
